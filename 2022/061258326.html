@@ -503,28 +503,30 @@ npm init 初始化 package.json文件
 <li><code>npm init</code> 初始化 <code>package.json</code>文件</li>
 <li>创建src目录-&gt;在此目录下创建 main.js 文件作为入口文件</li>
 <li>在 <code>package.json</code> 文件内新增打包命令</li>
-<li>执行 <code>npm run build</code> 查看是否打包成功 （成功的话dist文件夹下会新增打包的文件）<h1 id="二、webpack基础配置"><a href="#二、webpack基础配置" class="headerlink" title="二、webpack基础配置"></a>二、webpack基础配置</h1><h2 id="1、新建文件"><a href="#1、新建文件" class="headerlink" title="1、新建文件"></a>1、新建文件</h2></li>
+<li>执行 <code>npm run build</code> 查看是否打包成功 （成功的话dist文件夹下会新增打包的文件）<h1 id="二、webpack基础配置"><a href="#二、webpack基础配置" class="headerlink" title="二、webpack基础配置"></a>二、webpack基础配置</h1><h2 id="1、新建文件"><a href="#1、新建文件" class="headerlink" title="1、新建文件"></a>1、新建文件</h2><ul>
+<li>在项目根目录下新增build目录，并且创建<code>webpack.config.js</code>文件<h2 id="2、配置文件"><a href="#2、配置文件" class="headerlink" title="2、配置文件"></a>2、配置文件</h2></li>
+</ul>
+</li>
 </ol>
 <ul>
-<li>在项目根目录下新增build目录，并且创建<code>webpack.config.js</code>文件</li>
+<li>webpack.config.js 写入</li>
 </ul>
-<h2 id="2、配置文件"><a href="#2、配置文件" class="headerlink" title="2、配置文件"></a>2、配置文件</h2><pre><code>/ 引入核心模块path，用户获取文件路径
+<pre><code class="js">// 引入核心模块path，用户获取文件路径
 const path = require(&#39;path&#39;)
-
 // 导出配置信息
 module.exports = &#123;
-  // 设置模式
-  development， production 开发、生产模式
-  默认生产模式，也可以设置为 none */
-  mode: &#39;development&#39;,
-  // 设置入口文件路径
-  entry: path.resolve(__dirname, &#39;../src/main.js&#39;),
-  // 设置输出信息
-  output: &#123;
-    // 输出文件名
-    filename: &#39;budle.js&#39;,
-    path: path.resolve(__dirname, &#39;../build&#39;)
-  &#125;
+    // 设置模式
+    development， production 开发、生产模式
+    默认生产模式，也可以设置为 none */
+    mode: &#39;development&#39;,
+    // 设置入口文件路径
+    entry: path.resolve(__dirname, &#39;../src/main.js&#39;),
+        // 设置输出信息
+        output: &#123;
+            // 输出文件名
+            filename: &#39;budle.js&#39;,
+                path: path.resolve(__dirname, &#39;../build&#39;)
+        &#125;
 &#125;
 </code></pre>
 <h2 id="3、更改打包"><a href="#3、更改打包" class="headerlink" title="3、更改打包"></a>3、更改打包</h2><ul>
