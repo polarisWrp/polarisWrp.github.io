@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>手写常见js函数or方法</title>
+      <link href="/2022/061421649.html"/>
+      <url>/2022/061421649.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、常见功能函数"><a href="#一、常见功能函数" class="headerlink" title="一、常见功能函数"></a>一、常见功能函数</h2><h3 id="1-防抖，节流函数"><a href="#1-防抖，节流函数" class="headerlink" title="1. 防抖，节流函数"></a>1. 防抖，节流函数</h3><h4 id="1-1-函数防抖"><a href="#1-1-函数防抖" class="headerlink" title="1.1 函数防抖"></a>1.1 函数防抖</h4><h4 id="1-2-函数节流"><a href="#1-2-函数节流" class="headerlink" title="1.2 函数节流"></a>1.2 函数节流</h4><h3 id="2-递归函数"><a href="#2-递归函数" class="headerlink" title="2. 递归函数"></a>2. 递归函数</h3><h4 id="2-1-递归取出数组中指定的属性值"><a href="#2-1-递归取出数组中指定的属性值" class="headerlink" title="2.1 递归取出数组中指定的属性值"></a>2.1 递归取出数组中指定的属性值</h4><ul><li>数据结构类似如下，嵌套的数据模型与外层相同</li></ul><pre><code class="typescript">interface Type &#123;    name: string    children: Array&lt;Type&gt; | undefined&#125; list: Array&lt;Type&gt; = [      &#123;        name: &#39;kkk&#39;,        children: [          &#123;            name: &#39;ppp&#39;,            children: [              &#123;                name: &#39;uuu&#39;,                children: [],              &#125;            ]          &#125;,        ]      &#125; ]</code></pre><ul><li>需求：将数组中name属性值取出，拼接成字符串</li><li>关键点在于 temp 这个数据需要与递归函数隔离开，否则每次调用函数都会重置temp函数；从而无法获取所有名称集合</li></ul><pre><code class="typescript">getTypeName(arr: Array&lt;Type&gt;): string &#123;    if (!arr?.length) return &#39;-&#39;    let temp = new Array&lt;string&gt;()    function recursiveFn(list: Array&lt;Type&gt;) &#123;        list?.forEach((item) =&gt; &#123;            if (item?.children?.length) &#123;                temp.push(item.name)                recursiveFn(item?.children)            &#125; else &#123;                temp.push(item.name)            &#125;        &#125;)    &#125;    recursiveFn(arr)    return temp?.join(&#39;&gt;&#39;) || &#39;-&#39;&#125;</code></pre><h4 id="2-2-将嵌套的数组数据转为json树形结构"><a href="#2-2-将嵌套的数组数据转为json树形结构" class="headerlink" title="2.2 将嵌套的数组数据转为json树形结构"></a>2.2 将嵌套的数组数据转为json树形结构</h4><ul><li>数据源如下</li></ul><pre><code class="js">const arr = [1, 2, [3, [4, 5], 6], 7, [8], 9]方法一function recursiveFn(list) &#123;    const result = []    for (let i = 0; i &lt; list?.length; i++) &#123;        if (typeof list[i] === &#39;number&#39;) &#123;            result.push(&#123;                value: list[i]            &#125;)        &#125; else if (Array.isArray(list[i]))&#123;            result.push(&#123;                children: recursiveFn(list[i])            &#125;)        &#125;    &#125;    return result&#125;方法二function recursiveFn2(arr) &#123;    if (typeof arr === &#39;number&#39;) &#123;        return &#123;            value: arr        &#125;    &#125; else if (Array.isArray(arr)) &#123;        return arr?.map(item =&gt; recursiveFn2(item))    &#125;&#125;recursiveFn(arr)</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>每日计划-Day Day Up</title>
+      <link href="/2022/061312805.html"/>
+      <url>/2022/061312805.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、手写js题目"><a href="#一、手写js题目" class="headerlink" title="一、手写js题目"></a>一、手写js题目</h1><ul><li>防抖节流，promise函数，对象的深浅拷贝，js原型、原型链，instanceof</li><li>js事件循环机制（nextTick原理），浏览器回流与重绘，js闭包，js精度丢失</li><li>常用排序算法 插入，冒泡，快速，选择 <h1 id="二、Vue2核心api的手写"><a href="#二、Vue2核心api的手写" class="headerlink" title="二、Vue2核心api的手写"></a>二、Vue2核心api的手写</h1></li><li>双向绑定（响应式原理）</li><li>nextTick原理</li><li>diff算法</li><li>AST抽象语法树<h1 id="三、了解Vue3"><a href="#三、了解Vue3" class="headerlink" title="三、了解Vue3"></a>三、了解Vue3</h1></li><li>搭建项目，熟悉api使用</li><li>区分V3提升点</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> My Schedule </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用webpack搭建vuecli</title>
       <link href="/2022/061258326.html"/>
       <url>/2022/061258326.html</url>
