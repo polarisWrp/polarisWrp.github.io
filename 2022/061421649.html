@@ -5,11 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="手写常见js函数or方法, Polaris_Blog">
-    <meta name="description" content="一、常见功能函数1. 防抖，节流函数1.1 函数防抖1.2 函数节流2. 递归函数2.1 递归取出数组中指定的属性值
-数据结构类似如下，嵌套的数据模型与外层相同
+    <meta name="description" content="一、常见功能函数1. 防抖，节流函数1.1 函数防抖
+在延时时间内多次点击，每次点击都会重置延时时间；类似于坐电梯，在一定时间内只要有人按开关，那么电梯就不会关上。
 
-interface Type &amp;#123;
-    name: string">
+//执行函数， 延迟时长， 是否立即执行
+debounceFn(fn, ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -398,14 +398,14 @@ interface Type &amp;#123;
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    361
+                    531
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -420,7 +420,50 @@ interface Type &amp;#123;
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、常见功能函数"><a href="#一、常见功能函数" class="headerlink" title="一、常见功能函数"></a>一、常见功能函数</h2><h3 id="1-防抖，节流函数"><a href="#1-防抖，节流函数" class="headerlink" title="1. 防抖，节流函数"></a>1. 防抖，节流函数</h3><h4 id="1-1-函数防抖"><a href="#1-1-函数防抖" class="headerlink" title="1.1 函数防抖"></a>1.1 函数防抖</h4><h4 id="1-2-函数节流"><a href="#1-2-函数节流" class="headerlink" title="1.2 函数节流"></a>1.2 函数节流</h4><h3 id="2-递归函数"><a href="#2-递归函数" class="headerlink" title="2. 递归函数"></a>2. 递归函数</h3><h4 id="2-1-递归取出数组中指定的属性值"><a href="#2-1-递归取出数组中指定的属性值" class="headerlink" title="2.1 递归取出数组中指定的属性值"></a>2.1 递归取出数组中指定的属性值</h4><ul>
+                <h2 id="一、常见功能函数"><a href="#一、常见功能函数" class="headerlink" title="一、常见功能函数"></a>一、常见功能函数</h2><h3 id="1-防抖，节流函数"><a href="#1-防抖，节流函数" class="headerlink" title="1. 防抖，节流函数"></a>1. 防抖，节流函数</h3><h4 id="1-1-函数防抖"><a href="#1-1-函数防抖" class="headerlink" title="1.1 函数防抖"></a>1.1 函数防抖</h4><ul>
+<li>在延时时间内多次点击，每次点击都会重置延时时间；类似于坐电梯，在一定时间内只要有人按开关，那么电梯就不会关上。</li>
+</ul>
+<pre><code class="js">//执行函数， 延迟时长， 是否立即执行
+debounceFn(fn, delay, immediate)&#123;
+    let timer = null
+    return function () &#123;
+        const arg = arguments
+        cons that = this
+        if (immediate) &#123;
+          fn.apply(that,arg)
+          immediate = false
+          return
+        &#125;
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() =&gt; &#123;
+            fn.apply(that, arg)
+        &#125;, 1000)
+    &#125;
+&#125;
+</code></pre>
+<h4 id="1-2-函数节流"><a href="#1-2-函数节流" class="headerlink" title="1.2 函数节流"></a>1.2 函数节流</h4><ul>
+<li>一定时间内多次点击，执行固定次数</li>
+</ul>
+<pre><code class="js">function throttle(fn, wait, immediate) &#123;
+  let timer = null 
+  return function () &#123;
+    let _this = this
+    let args = arguments
+    if (immediate) &#123;
+        fn.apply(_this, args)
+        immediate = false
+        return
+    &#125;
+    if (!timer) &#123; 
+      timeout = setTimeout(() =&gt; &#123;
+        timer = null;
+        fn.apply(_this, args)
+      &#125;, wait)
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<h3 id="2-递归函数"><a href="#2-递归函数" class="headerlink" title="2. 递归函数"></a>2. 递归函数</h3><h4 id="2-1-递归取出数组中指定的属性值"><a href="#2-1-递归取出数组中指定的属性值" class="headerlink" title="2.1 递归取出数组中指定的属性值"></a>2.1 递归取出数组中指定的属性值</h4><ul>
 <li>数据结构类似如下，嵌套的数据模型与外层相同</li>
 </ul>
 <pre><code class="typescript">interface Type &#123;
