@@ -39,7 +39,7 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
     <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
 
 <meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Polaris_Blog" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -440,7 +440,7 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
 <li><code>堆的特点</code>是根结点的值最小（或最大），且<code>根结点</code>的两个子树也是一个堆。</li>
 <li>由于堆的这个特性，常用来实现优先队列，堆的存取是随意，这就如同我们在图书馆的书架上取书，<br>虽然书的摆放是有顺序的，但是我们想取任意一本都可以。</li>
 </ol>
-<h2 id="4-变量的类型与内存的关系"><a href="#4-变量的类型与内存的关系" class="headerlink" title="4.变量的类型与内存的关系"></a>4.变量的类型与内存的关系</h2><h3 id="4-1基本数据类型"><a href="#4-1基本数据类型" class="headerlink" title="4.1基本数据类型"></a>4.1基本数据类型</h3><pre><code class="js">String Number Boolean null undefined Symbol
+<h2 id="4-变量的类型与内存的关系"><a href="#4-变量的类型与内存的关系" class="headerlink" title="4.变量的类型与内存的关系"></a>4.变量的类型与内存的关系</h2><h3 id="4-1基本数据类型"><a href="#4-1基本数据类型" class="headerlink" title="4.1基本数据类型"></a>4.1基本数据类型</h3><pre class=" language-js"><code class="language-js">String Number Boolean <span class="token keyword">null</span> undefined Symbol
 </code></pre>
 <ul>
 <li>基本数据类型保存在<code>栈内存</code>中;</li>
@@ -457,36 +457,36 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
 <li>引用数据类型在栈中存储了<code>指针</code>，该指针<code>指向堆中该实体的起始地址</code>。 </li>
 <li>当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体</li>
 </ol>
-<pre><code class="js">// 基本数据类型-栈内存
-let a1 = 0;
-// 基本数据类型-栈内存
-let a2 = &#39;this is string&#39;;
-// 基本数据类型-栈内存
-let a3 = null;
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 基本数据类型-栈内存</span>
+<span class="token keyword">let</span> a1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 基本数据类型-栈内存</span>
+<span class="token keyword">let</span> a2 <span class="token operator">=</span> <span class="token string">'this is string'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 基本数据类型-栈内存</span>
+<span class="token keyword">let</span> a3 <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
 
-// 对象的指针存放在栈内存中，指针指向的对象存放在堆内存中
-let b = &#123; m: 20 &#125;;
-// 数组的指针存放在栈内存中，指针指向的数组存放在堆内存中
-let c = [1, 2, 3];
+<span class="token comment" spellcheck="true">// 对象的指针存放在栈内存中，指针指向的对象存放在堆内存中</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> m<span class="token punctuation">:</span> <span class="token number">20</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 数组的指针存放在栈内存中，指针指向的数组存放在堆内存中</span>
+<span class="token keyword">let</span> c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170034135.png" alt="image-20220617003402086"></p>
 <ul>
 <li>当我们要访问堆内存中的<code>引用数据类型</code>时，实际上我们首先是从变量中获取了该 <strong>对象的地址指针</strong>， 然后再从 <strong>堆内存</strong> 中取得我们需要的数据。</li>
 </ul>
-<h2 id="5-内存角度分析变量复制"><a href="#5-内存角度分析变量复制" class="headerlink" title="5.内存角度分析变量复制"></a>5.内存角度分析变量复制</h2><h3 id="5-1基本数据类型复制"><a href="#5-1基本数据类型复制" class="headerlink" title="5.1基本数据类型复制"></a>5.1基本数据类型复制</h3><pre><code class="js">let a = 20;
-let b = a;
-b = 30;
-console.log(a); // 20
+<h2 id="5-内存角度分析变量复制"><a href="#5-内存角度分析变量复制" class="headerlink" title="5.内存角度分析变量复制"></a>5.内存角度分析变量复制</h2><h3 id="5-1基本数据类型复制"><a href="#5-1基本数据类型复制" class="headerlink" title="5.1基本数据类型复制"></a>5.1基本数据类型复制</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+b <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 20</span>
 </code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170036999.png" alt="image-20220617003655920"></p>
 <ul>
 <li>基本数据类型复制时，栈中会分配新的存储空间；</li>
 <li>这也是使用 <code>JSON.parse(JSON.stringify(data))</code>可以对数据进行深拷贝的原因。</li>
 </ul>
-<h3 id="5-2引用数据类型的复制"><a href="#5-2引用数据类型的复制" class="headerlink" title="5.2引用数据类型的复制"></a>5.2引用数据类型的复制</h3><pre><code class="js">let m = &#123; a: 10, b: 20 &#125;;
-let n = m;
-n.a = 15;
-console.log(m.a) //15
+<h3 id="5-2引用数据类型的复制"><a href="#5-2引用数据类型的复制" class="headerlink" title="5.2引用数据类型的复制"></a>5.2引用数据类型的复制</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> m <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> a<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token number">20</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> n <span class="token operator">=</span> m<span class="token punctuation">;</span>
+n<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>a<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//15</span>
 </code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170038079.png" alt="image-20220617003829031"></p>
 <ul>
