@@ -398,7 +398,7 @@ debounceFn(fn, ">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    561
+                    506
                 </div>
                 
 
@@ -423,45 +423,45 @@ debounceFn(fn, ">
                 <h2 id="一、常见功能函数"><a href="#一、常见功能函数" class="headerlink" title="一、常见功能函数"></a>一、常见功能函数</h2><h3 id="1-防抖，节流函数"><a href="#1-防抖，节流函数" class="headerlink" title="1. 防抖，节流函数"></a>1. 防抖，节流函数</h3><h4 id="1-1-函数防抖"><a href="#1-1-函数防抖" class="headerlink" title="1.1 函数防抖"></a>1.1 函数防抖</h4><ul>
 <li>在延时时间内多次点击，每次点击都会重置延时时间；类似于坐电梯，在一定时间内只要有人按开关，那么电梯就不会关上。</li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//执行函数， 延迟时长， 是否立即执行</span>
-<span class="token function">debounceFn</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> delay<span class="token punctuation">,</span> immediate<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span>
-    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> arg <span class="token operator">=</span> arguments
-        cons that <span class="token operator">=</span> <span class="token keyword">this</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>immediate<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-          fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>that<span class="token punctuation">,</span>arg<span class="token punctuation">)</span>
-          immediate <span class="token operator">=</span> <span class="token boolean">false</span>
-          <span class="token keyword">return</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>timer<span class="token punctuation">)</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span>
-        timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>that<span class="token punctuation">,</span> arg<span class="token punctuation">)</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<pre class=" language-JavaScript"><code class="language-JavaScript">//执行函数， 延迟时长， 是否立即执行
+debounceFn(fn, delay, immediate)&#123;
+    let timer = null
+    return function () &#123;
+        const arg = arguments
+        cons that = this
+        if (immediate) &#123;
+          fn.apply(that,arg)
+          immediate = false
+          return
+        &#125;
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => &#123;
+            fn.apply(that, arg)
+        &#125;, 1000)
+    &#125;
+&#125;
 </code></pre>
 <h4 id="1-2-函数节流"><a href="#1-2-函数节流" class="headerlink" title="1.2 函数节流"></a>1.2 函数节流</h4><ul>
 <li>一定时间内多次点击，执行固定次数</li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">throttle</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> wait<span class="token punctuation">,</span> immediate<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span> 
-  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">let</span> _this <span class="token operator">=</span> <span class="token keyword">this</span>
-    <span class="token keyword">let</span> args <span class="token operator">=</span> arguments
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>immediate<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>_this<span class="token punctuation">,</span> args<span class="token punctuation">)</span>
-        immediate <span class="token operator">=</span> <span class="token boolean">false</span>
-        <span class="token keyword">return</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
-      timeout <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-        fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>_this<span class="token punctuation">,</span> args<span class="token punctuation">)</span>
-      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> wait<span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<pre class=" language-JavaScript"><code class="language-JavaScript">function throttle(fn, wait, immediate) &#123;
+  let timer = null 
+  return function () &#123;
+    let _this = this
+    let args = arguments
+    if (immediate) &#123;
+        fn.apply(_this, args)
+        immediate = false
+        return
+    &#125;
+    if (!timer) &#123; 
+      timeout = setTimeout(() => &#123;
+        timer = null;
+        fn.apply(_this, args)
+      &#125;, wait)
+    &#125;
+  &#125;
+&#125;
 </code></pre>
 <h3 id="2-递归函数"><a href="#2-递归函数" class="headerlink" title="2. 递归函数"></a>2. 递归函数</h3><h4 id="2-1-递归取出数组中指定的属性值"><a href="#2-1-递归取出数组中指定的属性值" class="headerlink" title="2.1 递归取出数组中指定的属性值"></a>2.1 递归取出数组中指定的属性值</h4><ul>
 <li>数据结构类似如下，嵌套的数据模型与外层相同</li>
@@ -491,55 +491,55 @@ debounceFn(fn, ">
 <li>需求：将数组中name属性值取出，拼接成字符串</li>
 <li>关键点在于 temp 这个数据需要与递归函数隔离开，否则每次调用函数都会重置temp函数；从而无法获取所有名称集合</li>
 </ul>
-<pre class=" language-typescript"><code class="language-typescript"><span class="token function">getTypeName</span><span class="token punctuation">(</span>arr<span class="token punctuation">:</span> <span class="token keyword">Array</span><span class="token operator">&lt;</span>Type<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">string</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>arr<span class="token operator">?</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token string">'-'</span>
-    <span class="token keyword">let</span> temp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token operator">&lt;</span><span class="token keyword">string</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">function</span> <span class="token function">recursiveFn</span><span class="token punctuation">(</span>list<span class="token punctuation">:</span> <span class="token keyword">Array</span><span class="token operator">&lt;</span>Type<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        list<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token operator">?</span><span class="token punctuation">.</span>children<span class="token operator">?</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                temp<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-                <span class="token function">recursiveFn</span><span class="token punctuation">(</span>item<span class="token operator">?</span><span class="token punctuation">.</span>children<span class="token punctuation">)</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                temp<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token function">recursiveFn</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> temp<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'>'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'-'</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<pre class=" language-JavaScript"><code class="language-JavaScript">getTypeName(arr: Array<Type>): string &#123;
+    if (!arr?.length) return '-'
+    let temp = new Array<string>()
+    function recursiveFn(list: Array<Type>) &#123;
+        list?.forEach((item) => &#123;
+            if (item?.children?.length) &#123;
+                temp.push(item.name)
+                recursiveFn(item?.children)
+            &#125; else &#123;
+                temp.push(item.name)
+            &#125;
+        &#125;)
+    &#125;
+    recursiveFn(arr)
+    return temp?.join('>') || '-'
+&#125;
 </code></pre>
 <h4 id="2-2-将嵌套的数组数据转为json树形结构"><a href="#2-2-将嵌套的数组数据转为json树形结构" class="headerlink" title="2.2 将嵌套的数组数据转为json树形结构"></a>2.2 将嵌套的数组数据转为json树形结构</h4><ul>
 <li>数据源如下</li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+<pre class=" language-JavaScript"><code class="language-JavaScript">const arr = [1, 2, [3, [4, 5], 6], 7, [8], 9]
 方法一
-<span class="token keyword">function</span> <span class="token function">recursiveFn</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> list<span class="token operator">?</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> list<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'number'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            result<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                value<span class="token punctuation">:</span> list<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>list<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            result<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                children<span class="token punctuation">:</span> <span class="token function">recursiveFn</span><span class="token punctuation">(</span>list<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> result
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+function recursiveFn(list) &#123;
+    const result = []
+    for (let i = 0; i < list?.length; i++) &#123;
+        if (typeof list[i] === 'number') &#123;
+            result.push(&#123;
+                value: list[i]
+            &#125;)
+        &#125; else if (Array.isArray(list[i]))&#123;
+            result.push(&#123;
+                children: recursiveFn(list[i])
+            &#125;)
+        &#125;
+    &#125;
+    return result
+&#125;
 
 方法二
-<span class="token keyword">function</span> <span class="token function">recursiveFn2</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> arr <span class="token operator">===</span> <span class="token string">'number'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            value<span class="token punctuation">:</span> arr
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> arr<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>item <span class="token operator">=</span><span class="token operator">></span> <span class="token function">recursiveFn2</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token function">recursiveFn</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+function recursiveFn2(arr) &#123;
+    if (typeof arr === 'number') &#123;
+        return &#123;
+            value: arr
+        &#125;
+    &#125; else if (Array.isArray(arr)) &#123;
+        return arr?.map(item => recursiveFn2(item))
+    &#125;
+&#125;
+recursiveFn(arr)
 </code></pre>
 
                 
