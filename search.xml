@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>Js栈内存与堆内存</title>
+      <link href="/2022/061760149.html"/>
+      <url>/2022/061760149.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ul><li>JS的内存空间分为<strong>栈(stack)<strong>、</strong>堆(heap)<strong>、</strong>池</strong>(一般也会归类为栈中)。</li><li>其中 <code>栈</code> 存放变量，<code>堆</code> 存放复杂对象，<code>池</code> 存放常量，所以也叫常量池。</li></ul><h2 id="2-栈的数据结构"><a href="#2-栈的数据结构" class="headerlink" title="2.栈的数据结构"></a>2.栈的数据结构</h2><ul><li>存放在栈内的元素只能通过栈的栈顶访问，获取的元素的方式类似于日常生活中从乒乓球筒内取出乒乓球</li><li>栈被称为是后入先出的数据结构 (LIFO last-in-first-out)</li></ul><p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170021769.png" alt="image-20220617002142687"></p><h2 id="3-堆的数据结构"><a href="#3-堆的数据结构" class="headerlink" title="3.堆的数据结构"></a>3.堆的数据结构</h2><ol><li>堆是一种经过排序的<strong>树形数据结构</strong>，每个结点都有一个值。</li><li>通常我们所说的堆的数据结构，是指<code>二叉堆</code>。</li><li><code>堆的特点</code>是根结点的值最小（或最大），且<code>根结点</code>的两个子树也是一个堆。</li><li>由于堆的这个特性，常用来实现优先队列，堆的存取是随意，这就如同我们在图书馆的书架上取书，<br>虽然书的摆放是有顺序的，但是我们想取任意一本都可以。</li></ol><h2 id="4-变量的类型与内存的关系"><a href="#4-变量的类型与内存的关系" class="headerlink" title="4.变量的类型与内存的关系"></a>4.变量的类型与内存的关系</h2><h3 id="4-1基本数据类型"><a href="#4-1基本数据类型" class="headerlink" title="4.1基本数据类型"></a>4.1基本数据类型</h3><pre><code class="js">String Number Boolean null undefined Symbol</code></pre><ul><li>基本数据类型保存在<code>栈内存</code>中;</li><li>基本数据类型占用空间小，大小固定，按值访问;</li><li>但是<code>闭包</code>中的基本数据类型的变量不存于栈内存中，而是存储在<code>堆内存</code>中。</li></ul><p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170033969.png" alt="image-20220617003337927"></p><h3 id="4-2引用数据类型"><a href="#4-2引用数据类型" class="headerlink" title="4.2引用数据类型"></a>4.2引用数据类型</h3><ul><li>例如 <code>Array,Function,Object</code>可以认为除了上文提到的基本数据类型以外，所有类型都是引用数据类型;</li><li><code>引用数据类型</code>存储在<code>堆内存</code>中;</li><li>引用数据类型占据空间大、大小不固定。</li></ul><ol><li>引用数据类型在栈中存储了<code>指针</code>，该指针<code>指向堆中该实体的起始地址</code>。 </li><li>当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体</li></ol><pre><code class="js">// 基本数据类型-栈内存let a1 = 0;// 基本数据类型-栈内存let a2 = &#39;this is string&#39;;// 基本数据类型-栈内存let a3 = null;// 对象的指针存放在栈内存中，指针指向的对象存放在堆内存中let b = &#123; m: 20 &#125;;// 数组的指针存放在栈内存中，指针指向的数组存放在堆内存中let c = [1, 2, 3];</code></pre><p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170034135.png" alt="image-20220617003402086"></p><ul><li>当我们要访问堆内存中的<code>引用数据类型</code>时，实际上我们首先是从变量中获取了该 <strong>对象的地址指针</strong>， 然后再从 <strong>堆内存</strong> 中取得我们需要的数据。</li></ul><h2 id="5-内存角度分析变量复制"><a href="#5-内存角度分析变量复制" class="headerlink" title="5.内存角度分析变量复制"></a>5.内存角度分析变量复制</h2><h3 id="5-1基本数据类型复制"><a href="#5-1基本数据类型复制" class="headerlink" title="5.1基本数据类型复制"></a>5.1基本数据类型复制</h3><pre><code class="js">let a = 20;let b = a;b = 30;console.log(a); // 20</code></pre><p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170036999.png" alt="image-20220617003655920"></p><ul><li>基本数据类型复制时，栈中会分配新的存储空间；</li><li>这也是使用 <code>JSON.parse(JSON.stringify(data))</code>可以对数据进行深拷贝的原因。</li></ul><h3 id="5-2引用数据类型的复制"><a href="#5-2引用数据类型的复制" class="headerlink" title="5.2引用数据类型的复制"></a>5.2引用数据类型的复制</h3><pre><code class="js">let m = &#123; a: 10, b: 20 &#125;;let n = m;n.a = 15;console.log(m.a) //15</code></pre><p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170038079.png" alt="image-20220617003829031"></p><ul><li>引用数据类型复制时，堆内存会复制一个数据源的地址，指向的是同一个堆内存数据；</li><li>日常开发中对于引用数据类型的复制，应考虑使用深拷贝；从而不影响到数据源。</li></ul><h2 id="6-栈内存与堆内存的比较"><a href="#6-栈内存与堆内存的比较" class="headerlink" title="6.栈内存与堆内存的比较"></a>6.栈内存与堆内存的比较</h2><ul><li>在JS中，基本数据类型变量<code>大小固定</code>，并且<code>操作简单</code>容易，所以把它们放入栈中存储; </li><li>引用类型变量<code>大小不固定</code>，所以把它们分配给堆中，让他们<code>申请空间的时候自己确定大小</code>，这样把它们分开存储能够使得程序运行起来占用的内存最小;</li><li><code>栈内存</code>由于它的特点，所以它的系统效率较高。 <code>堆内存</code>需要分配<code>空间和地址</code>，还<code>要把地址存在栈中</code>，所以效率低于栈。</li></ul><h2 id="7-引用数据类型的深浅拷贝"><a href="#7-引用数据类型的深浅拷贝" class="headerlink" title="7.引用数据类型的深浅拷贝"></a>7.引用数据类型的深浅拷贝</h2><ul><li>手写对象深浅拷贝函数</li></ul><h3 id="7-1-实现思路："><a href="#7-1-实现思路：" class="headerlink" title="7.1 实现思路："></a>7.1 实现思路：</h3><ol><li>判断传入的数据类型，基本数据类型直接返回;</li><li>复杂数据类型判断是null 或是数组还是对象 ;初始化一个空数组或者空对象用于缓存数据;</li><li>递归遍历传入的数组和对象，拷贝到 2 创建出的缓存当中，返回最终结果。</li></ol><h3 id="7-2-栗子"><a href="#7-2-栗子" class="headerlink" title="7.2 栗子"></a>7.2 栗子</h3><pre><code>const arr = [1, 2, [22], 23]const testObj = &#123;  a: 1,  b: 2,  c: &#123;    d: 4,  &#125;,&#125;function cloneFn(obj) &#123;  // 基本数据类型直接返回  if (typeof obj !== &#39;object&#39; &amp;&amp; typeof obj != null) return obj  const temp = Array.isArray(obj) ? [] : &#123;&#125;  if (Array.isArray(temp)) &#123;    // 数组    obj.forEach(item =&gt; &#123;       temp.push(Array.isArray(item) ? cloneFn(item) : item)    &#125;)  &#125; else &#123;    // 对象    for (const key in obj) &#123;      if (!obj.hasOwnProperty(key)) return      const valIsObj = typeof obj[key] === &#39;object&#39;      temp[key] = valIsObj ? cloneFn(obj[key]) : obj[key]    &#125;  &#125;  return temp&#125;const res = cloneFn(testObj)res.a = 9999// res.push(99)console.log(res);console.log(testObj);</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>手写常见js函数or方法</title>
       <link href="/2022/061421649.html"/>
       <url>/2022/061421649.html</url>
@@ -27,7 +48,7 @@
       <link href="/2022/061312805.html"/>
       <url>/2022/061312805.html</url>
       
-        <content type="html"><![CDATA[<h1 id="一、手写js题目"><a href="#一、手写js题目" class="headerlink" title="一、手写js题目"></a>一、手写js题目</h1><ul><li>防抖节流，promise函数，对象的深浅拷贝，js原型、原型链，instanceof</li><li>js事件循环机制（nextTick原理），浏览器回流与重绘，js闭包，js精度丢失</li><li>常用排序算法 插入，冒泡，快速，选择 <h1 id="二、Vue2核心api的手写"><a href="#二、Vue2核心api的手写" class="headerlink" title="二、Vue2核心api的手写"></a>二、Vue2核心api的手写</h1></li><li>双向绑定（响应式原理）</li><li>nextTick原理</li><li>diff算法</li><li>AST抽象语法树<h1 id="三、了解Vue3"><a href="#三、了解Vue3" class="headerlink" title="三、了解Vue3"></a>三、了解Vue3</h1></li><li>搭建项目，熟悉api使用</li><li>区分V3提升点</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="一、手写js题目"><a href="#一、手写js题目" class="headerlink" title="一、手写js题目"></a>一、手写js题目</h1><h2 id="1-1-JavaScript"><a href="#1-1-JavaScript" class="headerlink" title="1.1 JavaScript"></a>1.1 JavaScript</h2><ul><li><del>防抖节流</del>，promise函数，对象的深浅拷贝，js原型、原型链，instanceof</li><li>js事件循环机制（nextTick原理），浏览器回流与重绘，js闭包，js精度丢失</li><li>常用排序算法 插入，冒泡，快速，选择 </li><li>js函数作用域 <del>js内存栈与堆</del><h1 id="二、Vue2核心api的手写"><a href="#二、Vue2核心api的手写" class="headerlink" title="二、Vue2核心api的手写"></a>二、Vue2核心api的手写</h1><h2 id="2-1-Vue-Api"><a href="#2-1-Vue-Api" class="headerlink" title="2.1 Vue-Api"></a>2.1 Vue-Api</h2></li><li>双向绑定（响应式原理）</li><li>nextTick原理</li><li>diff算法</li><li>AST抽象语法树</li><li>事件总线（发布订阅模式）<h1 id="三、了解Vue3"><a href="#三、了解Vue3" class="headerlink" title="三、了解Vue3"></a>三、了解Vue3</h1><h2 id="3-1-Vue-3"><a href="#3-1-Vue-3" class="headerlink" title="3.1 Vue-3"></a>3.1 Vue-3</h2></li><li>搭建项目，熟悉api使用</li><li>区分V3提升点</li></ul>]]></content>
       
       
       
