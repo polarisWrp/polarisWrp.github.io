@@ -465,7 +465,7 @@ let a2 = 'this is string';
 let a3 = null;
 
 // 对象的指针存放在栈内存中，指针指向的对象存放在堆内存中
-let b = &#123; m: 20 &#125;;
+let b = { m: 20 };
 // 数组的指针存放在栈内存中，指针指向的数组存放在堆内存中
 let c = [1, 2, 3];
 </code></pre>
@@ -483,7 +483,7 @@ console.log(a); // 20
 <li>基本数据类型复制时，栈中会分配新的存储空间；</li>
 <li>这也是使用 <code>JSON.parse(JSON.stringify(data))</code>可以对数据进行深拷贝的原因。</li>
 </ul>
-<h3 id="5-2引用数据类型的复制"><a href="#5-2引用数据类型的复制" class="headerlink" title="5.2引用数据类型的复制"></a>5.2引用数据类型的复制</h3><pre class=" language-JavaScript"><code class="language-JavaScript">let m = &#123; a: 10, b: 20 &#125;
+<h3 id="5-2引用数据类型的复制"><a href="#5-2引用数据类型的复制" class="headerlink" title="5.2引用数据类型的复制"></a>5.2引用数据类型的复制</h3><pre class=" language-JavaScript"><code class="language-JavaScript">let m = { a: 10, b: 20 }
 let n = m
 n.a = 15
 console.log(m.a) //15
@@ -507,32 +507,32 @@ console.log(m.a) //15
 <li>递归遍历传入的数组和对象，拷贝到 2 创建出的缓存当中，返回最终结果。</li>
 </ol>
 <h3 id="7-2-栗子"><a href="#7-2-栗子" class="headerlink" title="7.2 栗子"></a>7.2 栗子</h3><pre class=" language-JavaScript"><code class="language-JavaScript">const arr = [1, 2, [22], 23]
-const testObj = &#123;
+const testObj = {
   a: 1,
   b: 2,
-  c: &#123;
+  c: {
     d: 4,
-  &#125;,
-&#125;
-function cloneFn(obj) &#123;
+  },
+}
+function cloneFn(obj) {
   // 基本数据类型直接返回
   if (typeof obj !== 'object' && typeof obj != null) return obj
-  const temp = Array.isArray(obj) ? [] : &#123;&#125;
-  if (Array.isArray(temp)) &#123;
+  const temp = Array.isArray(obj) ? [] : {}
+  if (Array.isArray(temp)) {
     // 数组
-    obj.forEach(item => &#123; 
+    obj.forEach(item => { 
       temp.push(Array.isArray(item) ? cloneFn(item) : item)
-    &#125;)
-  &#125; else &#123;
+    })
+  } else {
     // 对象
-    for (const key in obj) &#123;
+    for (const key in obj) {
       if (!obj.hasOwnProperty(key)) return
       const valIsObj = typeof obj[key] === 'object'
       temp[key] = valIsObj ? cloneFn(obj[key]) : obj[key]
-    &#125;
-  &#125;
+    }
+  }
   return temp
-&#125;
+}
 const res = cloneFn(testObj)
 res.a = 9999
 // res.push(99)
