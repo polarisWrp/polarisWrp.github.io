@@ -4,13 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Js栈内存与堆内存, Polaris_Blog">
-    <meta name="description" content="1.定义
-JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)。
-其中 栈 存放变量，堆 存放复杂对象，池 存放常量，所以也叫常量池。
-
-2.栈的数据结构
-存放在栈内的元素只能通过栈的栈顶访问，获取的元素的方式类似于">
+    <meta name="keywords" content="Js执行机制(Event Loop), Polaris_Blog">
+    <meta name="description" content="1.Js单线程Js不是多线程原因：
+因为JS有操作Dom节点的api方法，如果两个线程同时操作一个DOM节点，一个执行删除操作，另一个执行修改等操作就会产生矛盾。2. 宏任务与微任务
+Js引擎分类：把任务分为两类包括 宏任务与微任务2.1 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +21,7 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
 
     
 
-    <title>Js栈内存与堆内存 | Polaris_Blog</title>
+    <title>Js执行机制(Event Loop) | Polaris_Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -253,12 +250,12 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Js栈内存与堆内存</h1>
+                    <h1 class="description center-align post-title">Js执行机制(Event Loop)</h1>
                 </div>
             </div>
         </div>
@@ -378,8 +375,8 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
                                 <span class="chip bg-color">JavaScript</span>
                             </a>
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                <span class="chip bg-color">数据结构</span>
+                            <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">
+                                <span class="chip bg-color">事件循环机制</span>
                             </a>
                         
                     </div>
@@ -394,7 +391,7 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-17
+                    2022-06-20
                 </div>
                 
 
@@ -403,14 +400,14 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    615
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    2 分
                 </div>
                 
 
@@ -425,120 +422,95 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ul>
-<li>JS的内存空间分为<strong>栈(stack)<strong>、</strong>堆(heap)<strong>、</strong>池</strong>(一般也会归类为栈中)。</li>
-<li>其中 <code>栈</code> 存放变量，<code>堆</code> 存放复杂对象，<code>池</code> 存放常量，所以也叫常量池。</li>
+                <h2 id="1-Js单线程"><a href="#1-Js单线程" class="headerlink" title="1.Js单线程"></a>1.Js单线程</h2><h3 id="Js不是多线程原因："><a href="#Js不是多线程原因：" class="headerlink" title="Js不是多线程原因："></a>Js不是多线程原因：</h3><ul>
+<li>因为JS有操作Dom节点的api方法，如果两个线程同时操作一个DOM节点，一个执行删除操作，另一个执行修改等操作就会产生矛盾。<h2 id="2-宏任务与微任务"><a href="#2-宏任务与微任务" class="headerlink" title="2. 宏任务与微任务"></a>2. 宏任务与微任务</h2></li>
+<li>Js引擎分类：把任务分为两类包括 <code>宏任务</code>与<code>微任务</code><h3 id="2-1-宏任务"><a href="#2-1-宏任务" class="headerlink" title="2.1 宏任务"></a>2.1 宏任务</h3></li>
+<li>script 整体代码</li>
+<li>setTimeout、setInterval</li>
+<li>I&#x2F;O</li>
+<li>UI渲染</li>
+<li>postMessage</li>
+<li>MessageChannel</li>
+<li>requestAnimationFrame</li>
+<li>setImmediate(Node.js 环境)<h3 id="2-2-微任务"><a href="#2-2-微任务" class="headerlink" title="2.2 微任务"></a>2.2 微任务</h3></li>
+<li>new Promise.then()</li>
+<li>MutationObserver</li>
+<li>process.nextTick() Node.js环境<h2 id="3-执行规则"><a href="#3-执行规则" class="headerlink" title="3.执行规则"></a>3.执行规则</h2><h3 id="3-1-事件循环机制-Event-Loop"><a href="#3-1-事件循环机制-Event-Loop" class="headerlink" title="3.1 事件循环机制(Event Loop)"></a>3.1 事件循环机制(Event Loop)</h3></li>
 </ul>
-<h2 id="2-栈的数据结构"><a href="#2-栈的数据结构" class="headerlink" title="2.栈的数据结构"></a>2.栈的数据结构</h2><ul>
-<li>存放在栈内的元素只能通过栈的栈顶访问，获取的元素的方式类似于日常生活中从乒乓球筒内取出乒乓球</li>
-<li>栈被称为是后入先出的数据结构 (LIFO last-in-first-out)</li>
+<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206202254999.png" alt="image-20220620225400880"></p>
+<ul>
+<li>事件循环开始时，会从全局栈开始逐行执行代码</li>
+<li>遇到<code>函数</code>会把函数压入调用栈中，被压入的函数称为<code>帧</code></li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170021769.png" alt="image-20220617002142687"></p>
-<h2 id="3-堆的数据结构"><a href="#3-堆的数据结构" class="headerlink" title="3.堆的数据结构"></a>3.堆的数据结构</h2><ol>
-<li>堆是一种经过排序的<strong>树形数据结构</strong>，每个结点都有一个值。</li>
-<li>通常我们所说的堆的数据结构，是指<code>二叉堆</code>。</li>
-<li><code>堆的特点</code>是根结点的值最小（或最大），且<code>根结点</code>的两个子树也是一个堆。</li>
-<li>由于堆的这个特性，常用来实现优先队列，堆的存取是随意，这就如同我们在图书馆的书架上取书，<br>虽然书的摆放是有顺序的，但是我们想取任意一本都可以。</li>
-</ol>
-<h2 id="4-变量的类型与内存的关系"><a href="#4-变量的类型与内存的关系" class="headerlink" title="4.变量的类型与内存的关系"></a>4.变量的类型与内存的关系</h2><h3 id="4-1基本数据类型"><a href="#4-1基本数据类型" class="headerlink" title="4.1基本数据类型"></a>4.1基本数据类型</h3><pre class=" language-JavaScript"><code class="language-JavaScript">String Number Boolean null undefined Symbol
+<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206202259501.png" alt="image-20220620225950452"></p>
+<ul>
+<li>在函数执行完成，会在栈中弹出</li>
+</ul>
+<h3 id="3-2普通函数执行-栗子"><a href="#3-2普通函数执行-栗子" class="headerlink" title="3.2普通函数执行 栗子"></a>3.2普通函数执行 栗子</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 2 1 3</span>
 </code></pre>
 <ul>
-<li>基本数据类型保存在<code>栈内存</code>中;</li>
-<li>基本数据类型占用空间小，大小固定，按值访问;</li>
-<li>但是<code>闭包</code>中的基本数据类型的变量不存于栈内存中，而是存储在<code>堆内存</code>中。</li>
+<li>首先函数 <code>fn2()</code> 被压入栈，输出<code>2</code> 此时栈底为 <code>fn2()</code></li>
+<li>而后函数 <code>fn1()</code>被压入栈，输出<code>1 </code>弹出 <code>fn1()</code></li>
+<li>最后执行 <code>console.log(3)</code>, 输出3 弹出<code>fn2()</code></li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170033969.png" alt="image-20220617003337927"></p>
-<h3 id="4-2引用数据类型"><a href="#4-2引用数据类型" class="headerlink" title="4.2引用数据类型"></a>4.2引用数据类型</h3><ul>
-<li>例如 <code>Array,Function,Object</code>可以认为除了上文提到的基本数据类型以外，所有类型都是引用数据类型;</li>
-<li><code>引用数据类型</code>存储在<code>堆内存</code>中;</li>
-<li>引用数据类型占据空间大、大小不固定。</li>
-</ul>
-<ol>
-<li>引用数据类型在栈中存储了<code>指针</code>，该指针<code>指向堆中该实体的起始地址</code>。 </li>
-<li>当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体</li>
-</ol>
-<pre class=" language-JavaScript"><code class="language-JavaScript">// 基本数据类型-栈内存
-let a1 = 0;
-// 基本数据类型-栈内存
-let a2 = 'this is string';
-// 基本数据类型-栈内存
-let a3 = null;
-
-// 对象的指针存放在栈内存中，指针指向的对象存放在堆内存中
-let b = { m: 20 };
-// 数组的指针存放在栈内存中，指针指向的数组存放在堆内存中
-let c = [1, 2, 3];
+<h3 id="3-3存在宏任务时的执行栗子"><a href="#3-3存在宏任务时的执行栗子" class="headerlink" title="3.3存在宏任务时的执行栗子"></a>3.3存在宏任务时的执行栗子</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 1 3 2</span>
 </code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170034135.png" alt="image-20220617003402086"></p>
 <ul>
-<li>当我们要访问堆内存中的<code>引用数据类型</code>时，实际上我们首先是从变量中获取了该 <strong>对象的地址指针</strong>， 然后再从 <strong>堆内存</strong> 中取得我们需要的数据。</li>
+<li>首先 <code>fn2()</code> 被压入栈，而后<code>setTimeout</code>里面的回调函数也就是 <code>console.log(2)</code> 会入队在<code>消息队列</code>当中；当<code>调用栈被清空时</code>执行消息队列的函数。</li>
+<li>接着 <code>fn1()</code> 被压入栈，输出<code>1</code>后弹出；接着输出<code> 3</code>，弹出<code>fn2()</code></li>
+<li>此时调用栈清空，执行<code>消息队列</code>函数，输出 2 【这也是为什么setTimeout的延时是最小延时时间】</li>
 </ul>
-<h2 id="5-内存角度分析变量复制"><a href="#5-内存角度分析变量复制" class="headerlink" title="5.内存角度分析变量复制"></a>5.内存角度分析变量复制</h2><h3 id="5-1基本数据类型复制"><a href="#5-1基本数据类型复制" class="headerlink" title="5.1基本数据类型复制"></a>5.1基本数据类型复制</h3><pre class=" language-JavaScript"><code class="language-JavaScript">let a = 20;
-let b = a;
-b = 30;
-console.log(a); // 20
+<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206202321748.png" alt="image-20220620232121700"></p>
+<h3 id="3-4微任务栗子"><a href="#3-4微任务栗子" class="headerlink" title="3.4微任务栗子"></a>3.4微任务栗子</h3><ul>
+<li>Async await 创建的微任务会存放在<code>微任务队列</code>中，当<code>调用栈清空时会立即执行</code>，同时<code>在这期间存储的其他微任务</code>也会<code>一并执行</code>。</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span>reslove <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+    <span class="token function">reslove</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    p<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>resloved <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>resloved<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 4、1、3、5、6、2</span>
 </code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170036999.png" alt="image-20220617003655920"></p>
 <ul>
-<li>基本数据类型复制时，栈中会分配新的存储空间；</li>
-<li>这也是使用 <code>JSON.parse(JSON.stringify(data))</code>可以对数据进行深拷贝的原因。</li>
+<li>首先 <code>new Promise</code>被压入栈中，依次输出 <code>4,5</code>后弹出</li>
+<li>接着<code> fn2()</code> 被压入栈中，<code>setTimeout</code>中的回调进入<code>消息队列</code>；<br>-<code> fn1()</code>压入栈 输出<code>1</code>后弹出；接着输出 <code>3</code></li>
+<li><code>then方法</code>中的回调进入微任务队列中；此时弹出<code>fn2()</code> ;调用栈被清空</li>
+<li>立即执行微任务队列，清空消息队列；依次输出了 <code>5(resloved )、 6、2</code>。</li>
 </ul>
-<h3 id="5-2引用数据类型的复制"><a href="#5-2引用数据类型的复制" class="headerlink" title="5.2引用数据类型的复制"></a>5.2引用数据类型的复制</h3><pre class=" language-JavaScript"><code class="language-JavaScript">let m = { a: 10, b: 20 }
-let n = m
-n.a = 15
-console.log(m.a) //15
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206170038079.png" alt="image-20220617003829031"></p>
-<ul>
-<li>引用数据类型复制时，堆内存会复制一个数据源的地址，指向的是同一个堆内存数据；</li>
-<li>日常开发中对于引用数据类型的复制，应考虑使用深拷贝；从而不影响到数据源。</li>
-</ul>
-<h2 id="6-栈内存与堆内存的比较"><a href="#6-栈内存与堆内存的比较" class="headerlink" title="6.栈内存与堆内存的比较"></a>6.栈内存与堆内存的比较</h2><ul>
-<li>在JS中，基本数据类型变量<code>大小固定</code>，并且<code>操作简单</code>容易，所以把它们放入栈中存储; </li>
-<li>引用类型变量<code>大小不固定</code>，所以把它们分配给堆中，让他们<code>申请空间的时候自己确定大小</code>，这样把它们分开存储能够使得程序运行起来占用的内存最小;</li>
-<li><code>栈内存</code>由于它的特点，所以它的系统效率较高。 <code>堆内存</code>需要分配<code>空间和地址</code>，还<code>要把地址存在栈中</code>，所以效率低于栈。</li>
-</ul>
-<h2 id="7-引用数据类型的深浅拷贝"><a href="#7-引用数据类型的深浅拷贝" class="headerlink" title="7.引用数据类型的深浅拷贝"></a>7.引用数据类型的深浅拷贝</h2><ul>
-<li>手写对象深浅拷贝函数</li>
-</ul>
-<h3 id="7-1-实现思路："><a href="#7-1-实现思路：" class="headerlink" title="7.1 实现思路："></a>7.1 实现思路：</h3><ol>
-<li>判断传入的数据类型，基本数据类型直接返回;</li>
-<li>复杂数据类型判断是null 或是数组还是对象 ;初始化一个空数组或者空对象用于缓存数据;</li>
-<li>递归遍历传入的数组和对象，拷贝到 2 创建出的缓存当中，返回最终结果。</li>
-</ol>
-<h3 id="7-2-栗子"><a href="#7-2-栗子" class="headerlink" title="7.2 栗子"></a>7.2 栗子</h3><pre class=" language-JavaScript"><code class="language-JavaScript">const arr = [1, 2, [22], 23]
-const testObj = {
-  a: 1,
-  b: 2,
-  c: {
-    d: 4,
-  },
-}
-function cloneFn(obj) {
-  // 基本数据类型直接返回
-  if (typeof obj !== 'object' && typeof obj != null) return obj
-  const temp = Array.isArray(obj) ? [] : {}
-  if (Array.isArray(temp)) {
-    // 数组
-    obj.forEach(item => { 
-      temp.push(Array.isArray(item) ? cloneFn(item) : item)
-    })
-  } else {
-    // 对象
-    for (const key in obj) {
-      if (!obj.hasOwnProperty(key)) return
-      const valIsObj = typeof obj[key] === 'object'
-      temp[key] = valIsObj ? cloneFn(obj[key]) : obj[key]
-    }
-  }
-  return temp
-}
-const res = cloneFn(testObj)
-res.a = 9999
-// res.push(99)
-console.log(res);
-console.log(testObj);
-</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206202334192.png" alt="image-20220620233457135"></p>
 
                 
             </div>
@@ -565,7 +537,7 @@ console.log(testObj);
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://polarisWrp.github.io/2022/061760149.html">http://polarisWrp.github.io/2022/061760149.html</a>
+                    <a href="http://polarisWrp.github.io/2022/06207209.html">http://polarisWrp.github.io/2022/06207209.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -607,8 +579,8 @@ console.log(testObj);
                                     <span class="chip bg-color">JavaScript</span>
                                 </a>
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                    <span class="chip bg-color">数据结构</span>
+                                <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">
+                                    <span class="chip bg-color">事件循环机制</span>
                                 </a>
                             
                         </div>
@@ -782,9 +754,10 @@ console.log(testObj);
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/06207209.html">
                     <div class="card-image">
@@ -802,9 +775,9 @@ console.log(testObj);
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -813,6 +786,7 @@ console.log(testObj);
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -835,13 +809,13 @@ console.log(testObj);
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/061421649.html">
+                <a href="/2022/061760149.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="手写常见js函数or方法">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Js栈内存与堆内存">
                         
-                        <span class="card-title">手写常见js函数or方法</span>
+                        <span class="card-title">Js栈内存与堆内存</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -852,7 +826,7 @@ console.log(testObj);
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-17
                             </span>
                         <span class="publish-author">
                             
@@ -867,6 +841,10 @@ console.log(testObj);
                     
                     <a href="/tags/JavaScript/">
                         <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
                     </a>
                     
                 </div>
