@@ -400,7 +400,7 @@ Js引擎分类：把任务分为两类包括 宏任务与微任务2.1 ">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    615
+                    658
                 </div>
                 
 
@@ -436,6 +436,8 @@ Js引擎分类：把任务分为两类包括 宏任务与微任务2.1 ">
 <li>new Promise.then()</li>
 <li>MutationObserver</li>
 <li>process.nextTick() Node.js环境<h2 id="3-执行规则"><a href="#3-执行规则" class="headerlink" title="3.执行规则"></a>3.执行规则</h2><h3 id="3-1-事件循环机制-Event-Loop"><a href="#3-1-事件循环机制-Event-Loop" class="headerlink" title="3.1 事件循环机制(Event Loop)"></a>3.1 事件循环机制(Event Loop)</h3></li>
+<li>Js异步处理以及多线程的实现由事件循环机制实现</li>
+<li>大体分为 调用栈、消息队列、微任务队列</li>
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206202254999.png" alt="image-20220620225400880"></p>
 <ul>
@@ -444,7 +446,7 @@ Js引擎分类：把任务分为两类包括 宏任务与微任务2.1 ">
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206202259501.png" alt="image-20220620225950452"></p>
 <ul>
-<li>在函数执行完成，会在栈中弹出</li>
+<li>函数执行完成，会在栈中弹出</li>
 </ul>
 <h3 id="3-2普通函数执行-栗子"><a href="#3-2普通函数执行-栗子" class="headerlink" title="3.2普通函数执行 栗子"></a>3.2普通函数执行 栗子</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
@@ -459,7 +461,7 @@ Js引擎分类：把任务分为两类包括 宏任务与微任务2.1 ">
 <ul>
 <li>首先函数 <code>fn2()</code> 被压入栈，输出<code>2</code> 此时栈底为 <code>fn2()</code></li>
 <li>而后函数 <code>fn1()</code>被压入栈，输出<code>1 </code>弹出 <code>fn1()</code></li>
-<li>最后执行 <code>console.log(3)</code>, 输出3 弹出<code>fn2()</code></li>
+<li>最后执行 <code>console.log(3)</code>, 输出<code>3</code> 弹出<code>fn2()</code></li>
 </ul>
 <h3 id="3-3存在宏任务时的执行栗子"><a href="#3-3存在宏任务时的执行栗子" class="headerlink" title="3.3存在宏任务时的执行栗子"></a>3.3存在宏任务时的执行栗子</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
@@ -511,7 +513,7 @@ Js引擎分类：把任务分为两类包括 宏任务与微任务2.1 ">
 <li>立即执行微任务队列，清空消息队列；依次输出了 <code>5(resloved )、 6、2</code>。</li>
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206202334192.png" alt="image-20220620233457135"></p>
-
+<h2 id="4-Vue中-nextTick原理"><a href="#4-Vue中-nextTick原理" class="headerlink" title="4.Vue中 $nextTick原理"></a>4.Vue中 $nextTick原理</h2>
                 
             </div>
             <hr/>
