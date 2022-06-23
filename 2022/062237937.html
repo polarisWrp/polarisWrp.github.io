@@ -404,14 +404,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -540,9 +540,27 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="5-作用域链demo"><a href="#5-作用域链demo" class="headerlink" title="5.作用域链demo"></a>5.作用域链demo</h2><ul>
-<li>TODO</li>
+<h2 id="5-作用域链"><a href="#5-作用域链" class="headerlink" title="5.作用域链"></a>5.作用域链</h2><h3 id="5-1-函数作用域问题"><a href="#5-1-函数作用域问题" class="headerlink" title="5.1 函数作用域问题"></a>5.1 函数作用域问题</h3><ul>
+<li>对象内部的函数表达式<pre class=" language-JavaScript"><code class="language-JavaScript">var o={
+fn:function (){
+  console.log(fn);
+}
+};
+o.fn();//ERROR报错
+</code></pre>
+</li>
+<li>非对象内部的函数表达式<pre class=" language-JavaScript"><code class="language-JavaScript">var fn=function (){
+console.log(fn);
+};
+fn(); //function (){console.log(fn);};正确
+</code></pre>
+<h3 id="5-2总结"><a href="#5-2总结" class="headerlink" title="5.2总结"></a>5.2总结</h3></li>
+<li>使用 var或是’非对象内部的函数表达式内’，可以访问到存放当前函数的变量；在对象内部的不能访问到。</li>
 </ul>
+<ol>
+<li>因为<code>函数作用域链</code>的问题，采用var的是在<code>外部创建了一个fn变量</code>，函数在内部寻找不到fn后向上作用域查找fn，</li>
+<li>而在<code>创建对象内部时</code>，因为<code>没有在函数作用域内创建fn</code>，所以无法访问。</li>
+</ol>
 
                 
             </div>
