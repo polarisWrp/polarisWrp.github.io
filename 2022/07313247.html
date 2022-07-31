@@ -4,14 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Js闭包, Polaris_Blog">
-    <meta name="description" content="1. 什么是闭包1.1 定义：
-闭包指的是有权访问另一个函数作用域中的变量的函数1.2 Js代码执行过程
-执行过程分为 编译阶段 和 代码执行 阶段
+    <meta name="keywords" content="Js之变量提升, Polaris_Blog">
+    <meta name="description" content="一、常见的变量提升场景1.1 函数的一般使用方式
+一般使用函数，都是先声明再调用
+但是先声明再调用依旧正常输出，原因就是由于执行上下文的工作方式造成的
 
-
-代码编译阶段: 由编译器完成，将代码翻译为可执行的代码，并且确定作用域规则
-执行阶段由">
+形如：
+catName(&#39;北极星&#39;)
+function catName(name) {">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +25,7 @@
 
     
 
-    <title>Js闭包 | Polaris_Blog</title>
+    <title>Js之变量提升 | Polaris_Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -254,12 +254,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Js闭包</h1>
+                    <h1 class="description center-align post-title">Js之变量提升</h1>
                 </div>
             </div>
         </div>
@@ -375,12 +375,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
-                                <span class="chip bg-color">作用域</span>
-                            </a>
-                        
-                            <a href="/tags/Js%E9%97%AD%E5%8C%85/">
-                                <span class="chip bg-color">Js闭包</span>
+                            <a href="/tags/JavaScript/">
+                                <span class="chip bg-color">JavaScript</span>
                             </a>
                         
                     </div>
@@ -395,7 +391,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-22
+                    2022-07-31
                 </div>
                 
 
@@ -404,14 +400,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    4 分
                 </div>
                 
 
@@ -426,141 +422,158 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-什么是闭包"><a href="#1-什么是闭包" class="headerlink" title="1. 什么是闭包"></a>1. 什么是闭包</h2><h3 id="1-1-定义："><a href="#1-1-定义：" class="headerlink" title="1.1 定义："></a>1.1 定义：</h3><ul>
-<li>闭包指的是有权访问另一个函数作用域中的变量的函数<h3 id="1-2-Js代码执行过程"><a href="#1-2-Js代码执行过程" class="headerlink" title="1.2 Js代码执行过程"></a>1.2 Js代码执行过程</h3></li>
-<li>执行过程分为 <code>编译阶段</code> 和 <code>代码执行</code> 阶段</li>
+                <h2 id="一、常见的变量提升场景"><a href="#一、常见的变量提升场景" class="headerlink" title="一、常见的变量提升场景"></a>一、常见的变量提升场景</h2><h3 id="1-1-函数的一般使用方式"><a href="#1-1-函数的一般使用方式" class="headerlink" title="1.1 函数的一般使用方式"></a>1.1 函数的一般使用方式</h3><ul>
+<li>一般使用函数，都是先声明再调用</li>
+<li>但是先声明再调用依旧正常输出，原因就是由于执行上下文的工作方式造成的</li>
 </ul>
-<ol>
-<li>代码编译阶段: 由编译器完成，将代码翻译为可执行的代码，并且<code>确定作用域规则</code></li>
-<li>执行阶段由Js引擎完成：执行可执行的代码，创建 <code>执行上下文</code><h2 id="2-作用域和作用域链"><a href="#2-作用域和作用域链" class="headerlink" title="2. 作用域和作用域链"></a>2. 作用域和作用域链</h2><h3 id="2-1-作用域"><a href="#2-1-作用域" class="headerlink" title="2.1 作用域"></a>2.1 作用域</h3></li>
-</ol>
+<p>形如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">catName</span><span class="token punctuation">(</span><span class="token string">'北极星'</span><span class="token punctuation">)</span>
+<span class="token keyword">function</span> <span class="token function">catName</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'这是：'</span> <span class="token operator">+</span> name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <ul>
-<li>作用域包括 <code>全局作用域</code> 和 <code>函数作用域</code></li>
-<li>Js中将作用域定义为一套规则，用于管理引擎如何在 <code>当前作用域</code> 以及 <code>嵌套子作用域</code> 中根据 <code>标识符名称</code> 进行变量（变量名或者函数名）查找<h3 id="2-2-作用域链"><a href="#2-2-作用域链" class="headerlink" title="2.2 作用域链"></a>2.2 作用域链</h3></li>
+<li>变量提升也适用于其他数据类型和变量，变量可以在声明之前进行初始化和使用；但是需要先初始化</li>
+<li>函数和变量的相比，会被优先提升</li>
 </ul>
-<ol>
-<li>当访问一个变量，编译器执行代码是<code>从当前的作用域查找</code>是否存在这个<code>标识符</code>(指变量名或函数名)，没找到就会<code>去父作用域查找</code>，<br>直到<code>全局作用域</code>为止。</li>
+<h3 id="1-2-变量提升"><a href="#1-2-变量提升" class="headerlink" title="1.2 变量提升"></a>1.2 变量提升</h3><ul>
+<li>变量提升，只是声明提前，不会提升初始化</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//  undefined</span>
+  <span class="token keyword">var</span> names
+  names <span class="token operator">=</span> <span class="token string">'北极星'</span>
+</code></pre>
+<h2 id="二、变量提升和函数提升"><a href="#二、变量提升和函数提升" class="headerlink" title="二、变量提升和函数提升"></a>二、变量提升和函数提升</h2><h3 id="2-1-声明变量的方式"><a href="#2-1-声明变量的方式" class="headerlink" title="2.1 声明变量的方式"></a>2.1 声明变量的方式</h3><ul>
+<li><code>es6</code>之前，声明变量的方式<ol>
+<li>var </li>
+<li>function</li>
+<li>隐式声明</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206220047608.png" alt="image-20220622004703513"></p>
-<ol start="2">
-<li>作用域链就是由<code>当前作用域</code>与<code>上层作用域</code>的一系列变量对象组成，保证了当前执行的作用域符合 <code>访问权限的变量</code> 和 <code>函数的有序访问</code><br>  函数在<code>调用</code>激活时，会开始创建对应的<code>执行上下文</code>，在执行上下文生成的过程中，<code>变量对象，作用域链，以及this的值</code>会分别被确定。</li>
-</ol>
-<h2 id="3-闭包如何产生"><a href="#3-闭包如何产生" class="headerlink" title="3. 闭包如何产生"></a>3. 闭包如何产生</h2><h3 id="3-1产生的本质"><a href="#3-1产生的本质" class="headerlink" title="3.1产生的本质"></a>3.1产生的本质</h3><ul>
-<li>当前环境存在指向对父级作用域的引用<h3 id="3-2-闭包"><a href="#3-2-闭包" class="headerlink" title="3.2 闭包"></a>3.2 闭包</h3></li>
-<li>闭包是一个特殊的对象，由 执行上下文和在执行上下文中创建的函数组成；当函数执行时，如果访问了上下文中变量对象的值，闭包就产生了。</li>
-</ul>
-<h4 id="3-2-1栗子1"><a href="#3-2-1栗子1" class="headerlink" title="3.2.1栗子1"></a>3.2.1栗子1</h4><pre class=" language-javascript"><code class="language-javascript">  <span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
-    <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> bar<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">var</span> bar <span class="token operator">=</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<ol>
-<li>如上案例：首先有 <code>执行上下文foo</code>，在<code>foo</code>中定义了<code>函数bar</code>，而通过<code>return</code>返回bar的方式使<code>bar执行</code>。</li>
-</ol>
-<pre><code>当bar执行时，`访问了foo内部的变量a，b`。因此这个时候`闭包产生`。
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206220103484.png" alt="image-20220622010328426"></p>
-<pre><code>2. JavaScript的自动`垃圾回收机制`: 当一个`值在内存中失去引用`时，立即回收机制会根据特殊算法找到并将其回收;
-3. 函数的 `执行上下文` 在执行完毕之后，`生命周期结束`，该函数的执行上下文就会`失去引用`;其占用的`内存空间`很快就会被 垃圾回收器 释放,可是 `闭包的存在，会阻止这一过程`。 
-</code></pre>
-<h4 id="3-2-2栗子2"><a href="#3-2-2栗子2" class="headerlink" title="3.2.2栗子2"></a>3.2.2栗子2</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function">innnerFoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    fn <span class="token operator">=</span> innnerFoo<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将 innnerFoo的引用，赋值给全局变量中的fn</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 此处的保留的innerFoo的引用</span>
-<span class="token punctuation">}</span>
-<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-</code></pre>
-<ol>
-<li><code>foo()</code>执行完毕,生命周期结束，所占内存本该被垃圾收集器释放。 但是通过 <code>fn= innerFoo</code> 赋值给了全局变量，<br>函数<code>innerFoo引用</code>被保留。</li>
-<li>函数 <code>fn</code> 在<code>bar</code> 中执行，innnerFoo函数内访问了外层a变量；foo的变量对象，也被保留了下来。</li>
-<li>所以 可以称 foo 为闭包函数</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206220116443.png" alt="image-20220622011600388"></p>
-<h3 id="3-3产生闭包原因"><a href="#3-3产生闭包原因" class="headerlink" title="3.3产生闭包原因"></a>3.3产生闭包原因</h3><ul>
-<li>返回函数 </li>
-<li>函数作为参数传递</li>
-</ul>
-<h2 id="4-创建函数"><a href="#4-创建函数" class="headerlink" title="4. 创建函数"></a>4. 创建函数</h2><h3 id="4-1函数分类"><a href="#4-1函数分类" class="headerlink" title="4.1函数分类"></a>4.1函数分类</h3><ul>
-<li>函数分为 <strong>具名函数</strong> 和 <strong>匿名函数</strong></li>
-</ul>
-<h3 id="4-2函数创建方式"><a href="#4-2函数创建方式" class="headerlink" title="4.2函数创建方式"></a>4.2函数创建方式</h3><h4 id="4-2-1声明函数"><a href="#4-2-1声明函数" class="headerlink" title="4.2.1声明函数"></a>4.2.1声明函数</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-</code></pre>
-<h4 id="4-2-2创建匿名函数表达式"><a href="#4-2-2创建匿名函数表达式" class="headerlink" title="4.2.2创建匿名函数表达式"></a>4.2.2创建匿名函数表达式</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
-    * 获取指定函数的函数名称（用于兼容IE）
-    * @param {Function} fun 任意函数
-    */</span>
-<span class="token keyword">function</span> <span class="token function">getFunctionName</span><span class="token punctuation">(</span>fun<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>fun<span class="token punctuation">.</span>name <span class="token operator">!==</span> undefined<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> fun<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
-    <span class="token keyword">var</span> ret <span class="token operator">=</span> fun<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    ret <span class="token operator">=</span> ret<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token string">'function '</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    ret <span class="token operator">=</span> ret<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> ret<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'('</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="4-2-3创建一个变量，变量的内容为表达式"><a href="#4-2-3创建一个变量，变量的内容为表达式" class="headerlink" title="4.2.3创建一个变量，变量的内容为表达式"></a>4.2.3创建一个变量，变量的内容为<strong>表达式</strong></h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 并且由此创建出来的函数没有函数名, 即为匿名函数</span>
-<span class="token function">getFunctionName</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">.</span>length  <span class="token comment" spellcheck="true">// 0</span>
-</code></pre>
-<h4 id="4-2-4创建具名函数"><a href="#4-2-4创建具名函数" class="headerlink" title="4.2.4创建具名函数"></a>4.2.4创建具名函数</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//创建一个变量，内容为一个带有名称的函数</span>
-<span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 注意： </span>
-具名函数表达式的 函数名 只能在创建函数内部使用
-
-<span class="token number">1</span><span class="token punctuation">.</span> 即采用此种方法创建的函数在函数外层只能使用 fn 不能使用 getName 的函数名。
-<span class="token number">2</span><span class="token punctuation">.</span> getName 的命名只能在创建的函数内部使用
-
-<span class="token comment" spellcheck="true">// 在对象内定义函数如</span>
-<span class="token keyword">var</span> o<span class="token operator">=</span><span class="token punctuation">{</span> fn <span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>…<span class="token punctuation">}</span> <span class="token punctuation">}</span>，也属于函数表达式
-</code></pre>
-<h4 id="4-2-5-Function构造函数"><a href="#4-2-5-Function构造函数" class="headerlink" title="4.2.5 Function构造函数"></a>4.2.5 Function构造函数</h4><ul>
-<li>可以给 Function 构造函数传一个<strong>函数字符串</strong>，返回 包含这个字符串命令的函数，此种方法创建的是<strong>匿名函数</strong>。</li>
-</ul>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Function</span><span class="token punctuation">(</span><span class="token string">'alert(1)'</span><span class="token punctuation">)</span>   
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/polarisWrp/photo_stage/images/pic202206220131077.png" alt="image-20220622013146034"></p>
-<h4 id="4-2-6自执行函数"><a href="#4-2-6自执行函数" class="headerlink" title="4.2.6自执行函数"></a>4.2.6自执行函数</h4><ul>
-<li>自执行函数属于上述的 <code>函数表达式</code></li>
-</ul>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<h2 id="5-作用域链"><a href="#5-作用域链" class="headerlink" title="5.作用域链"></a>5.作用域链</h2><h3 id="5-1-函数作用域问题"><a href="#5-1-函数作用域问题" class="headerlink" title="5.1 函数作用域问题"></a>5.1 函数作用域问题</h3><ul>
-<li>对象内部的函数表达式<pre class=" language-JavaScript"><code class="language-JavaScript">var o={
-fn:function (){
-  console.log(fn);
-}
-};
-o.fn();//ERROR报错
-</code></pre>
 </li>
-<li>非对象内部的函数表达式<pre class=" language-JavaScript"><code class="language-JavaScript">var fn=function (){
-console.log(fn);
-};
-fn(); //function (){console.log(fn);};正确
+<li>Js变量提升，Js代码并不会移动，只是通过提升说法解释这一特性</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// undefined</span>
+<span class="token keyword">var</span> user <span class="token operator">=</span> <span class="token string">'北极星'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 北极星</span>
 </code></pre>
-<h3 id="5-2总结"><a href="#5-2总结" class="headerlink" title="5.2总结"></a>5.2总结</h3></li>
-<li>使用 var或是’非对象内部的函数表达式内’，可以访问到存放当前函数的变量；在对象内部的不能访问到。</li>
+<h3 id="2-2-代码执行"><a href="#2-2-代码执行" class="headerlink" title="2.2 代码执行"></a>2.2 代码执行</h3><h4 id="2-2-1-以V8引擎为栗子，解释执行-JS-代码的过程大致分为三个阶段"><a href="#2-2-1-以V8引擎为栗子，解释执行-JS-代码的过程大致分为三个阶段" class="headerlink" title="2.2.1 以V8引擎为栗子，解释执行 JS 代码的过程大致分为三个阶段"></a>2.2.1 以V8引擎为栗子，解释执行 JS 代码的过程大致分为三个阶段</h4><ol>
+<li>生成抽象语法树（AST）</li>
+<li>生成字节码</li>
+<li>生成机器码</li>
+</ol>
+<h4 id="2-2-2-生成抽象语法树"><a href="#2-2-2-生成抽象语法树" class="headerlink" title="2.2.2 生成抽象语法树"></a>2.2.2 生成抽象语法树</h4><ul>
+<li>生成抽象语法树阶段，又分为了<code>词法分析和语法分析</code>两个阶段。</li>
+<li>词法分析阶段： JS 会检测到当前作用域使用到的所有变量和函数声明，并将这些变量和函数声明添加到一个名为<code>词法环境（Lexical Environment）</code>的内存空间当中。</li>
+</ul>
+<h3 id="2-3-函数提升会先于变量提升"><a href="#2-3-函数提升会先于变量提升" class="headerlink" title="2.3 函数提升会先于变量提升"></a>2.3 函数提升会先于变量提升</h3><h4 id="2-3-1-在词法分析阶段"><a href="#2-3-1-在词法分析阶段" class="headerlink" title="2.3.1 在词法分析阶段:"></a>2.3.1 在词法分析阶段:</h4><ul>
+<li>变量声明</li>
+<li>函数声明</li>
 </ul>
 <ol>
-<li>因为<code>函数作用域链</code>的问题，采用var的是在<code>外部创建了一个fn变量</code>，函数在内部寻找不到fn后向上作用域查找fn，</li>
-<li>而在<code>创建对象内部时</code>，因为<code>没有在函数作用域内创建fn</code>，所以无法访问。</li>
+<li>对于变量声明形如：<code>var a = 3</code>,会为变量<code>分配内存</code>并初始化为 <code>undefined</code>，赋值语句在<code>生成机器码阶段</code>真正执行代码的时候才进行。</li>
+<li>对于函数声明如 <code>function sayHello() &#123; console.log(&#39;Hello there!&#39;) &#125;</code>，会在内存里<code>创建函数对象</code>，并且<code>直接初始化</code>为该函数对象。</li>
 </ol>
+<h4 id="2-3-2-代码栗子"><a href="#2-3-2-代码栗子" class="headerlink" title="2.3.2 代码栗子"></a>2.3.2 代码栗子</h4><pre class=" language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// function foo() {}</span>
+foo <span class="token operator">=</span> <span class="token number">3</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 3</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 函数提升先于变量提升,以上代码等价于</span>
+<span class="token keyword">var</span> foo
+foo <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// function foo() {}</span>
+foo <span class="token operator">=</span> <span class="token number">3</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 3</span>
+</code></pre>
+<h3 id="2-4-变量提升和函数提升，都是将声明提升到”当前作用域”的顶端"><a href="#2-4-变量提升和函数提升，都是将声明提升到”当前作用域”的顶端" class="headerlink" title="2.4 变量提升和函数提升，都是将声明提升到”当前作用域”的顶端"></a>2.4 变量提升和函数提升，都是将声明提升到”当前作用域”的顶端</h3><h4 id="2-4-1-代码栗子"><a href="#2-4-1-代码栗子" class="headerlink" title="2.4.1 代码栗子"></a>2.4.1 代码栗子</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token keyword">function</span> <span class="token function">hoist</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// function foo() {}</span>
+    foo <span class="token operator">=</span> <span class="token number">3</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 3</span>
+    <span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">hoist</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 5 这里会先从当前作用域查找</span>
+
+<span class="token comment" spellcheck="true">// 以上代码等价于------------</span>
+<span class="token keyword">var</span> hoist
+<span class="token keyword">var</span> foo
+foo <span class="token operator">=</span> <span class="token number">5</span>
+hoist <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> foo
+    foo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span>
+    foo <span class="token operator">=</span> <span class="token number">3</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">hoist</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 5</span>
+</code></pre>
+<h4 id="2-4-2-匿名函数声明"><a href="#2-4-2-匿名函数声明" class="headerlink" title="2.4.2 匿名函数声明"></a>2.4.2 匿名函数声明</h4><ul>
+<li>代码栗子</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// Uncaught TypeError: sayHi is not a function</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sayHi<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// undefined</span>
+<span class="token keyword">var</span> sayHi <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hi there!'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// Hi there!</span>
+
+<span class="token comment" spellcheck="true">// 以上等价于 ----------</span>
+<span class="token keyword">var</span> sayHi
+<span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sayHi<span class="token punctuation">)</span>
+sayHi <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hi there'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="2-5-防止变量提升"><a href="#2-5-防止变量提升" class="headerlink" title="2.5 防止变量提升"></a>2.5 防止变量提升</h3><ul>
+<li><code>let const var</code> 都会产生变量的提升<ol>
+<li><code>var命令</code>在变量定义被执行之前就初始化，并且被赋值 <code>undefined</code></li>
+<li><code>let const 命令</code>会形成 暂时性死区（TDZ），在变量的定义被执行之前不会初始化变量</li>
+<li><code>let</code> 定义的变量没有给定值，会被赋值为<code>undefined</code>， <code>const</code>定义的变量没有初始值则会报错</li>
+</ol>
+</li>
+<li>代码栗子</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// Uncaught ReferenceError: Cannot access 'test' before initialization</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// Uncaught ReferenceError: Cannot access 'test' before initialization</span>
+<span class="token keyword">const</span> test <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// test</span>
+</code></pre>
+<h3 id="2-6-变量提升解决了函数相互递归调用的问题"><a href="#2-6-变量提升解决了函数相互递归调用的问题" class="headerlink" title="2.6 变量提升解决了函数相互递归调用的问题"></a>2.6 变量提升解决了函数相互递归调用的问题</h3><ul>
+<li>代码栗子<ol>
+<li>如果没有函数提升，那么在调用 <code>isEven </code>方法时，<code>isOdd </code>方法还未声明，那么在 <code>isEven </code>方法内部就无法调用 <code>isOdd </code>方法。</li>
+<li>通过函数提升，<code>isEven 和 isOdd</code> 方法都相当于在当前作用域的顶部进行了声明，函数之间的相互递归调用也就可以实现了。</li>
+</ol>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"> <span class="token operator">&lt;</span>script<span class="token operator">></span>
+      <span class="token comment" spellcheck="true">// 函数相互递归调用 A函数调用B函数，B函数调用A函数</span>
+      <span class="token comment" spellcheck="true">// 判断 n 是否为偶数</span>
+      <span class="token keyword">function</span> <span class="token function">isEven</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token function">isOdd</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">isEven</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+      <span class="token comment" spellcheck="true">// 判断 n 是否为奇数</span>
+      <span class="token keyword">function</span> <span class="token function">isOdd</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token function">isEven</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</code></pre>
+<h3 id="2-7-总结"><a href="#2-7-总结" class="headerlink" title="2.7 总结"></a>2.7 总结</h3><ul>
+<li>变量提升是在最初一批 JS 虚拟机设计实现上的纰漏，而函数提升是设计好的针对函数相互递归调用等问题的改进。</li>
+<li>作为针对变量提升的改进，<code>ES6 </code>中提出了最好使用 <code>let 和 const</code> 命令来声明变量，避免变量提升现象的发生</li>
+</ul>
 
                 
             </div>
@@ -587,7 +600,7 @@ fn(); //function (){console.log(fn);};正确
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://polarisWrp.github.io/2022/062237937.html">http://polarisWrp.github.io/2022/062237937.html</a>
+                    <a href="http://polarisWrp.github.io/2022/07313247.html">http://polarisWrp.github.io/2022/07313247.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,12 +638,8 @@ fn(); //function (){console.log(fn);};正确
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
-                                    <span class="chip bg-color">作用域</span>
-                                </a>
-                            
-                                <a href="/tags/Js%E9%97%AD%E5%8C%85/">
-                                    <span class="chip bg-color">Js闭包</span>
+                                <a href="/tags/JavaScript/">
+                                    <span class="chip bg-color">JavaScript</span>
                                 </a>
                             
                         </div>
@@ -808,13 +817,13 @@ fn(); //function (){console.log(fn);};正确
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/062334107.html">
+                <a href="/2022/073129671.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Vue3学习笔记">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Js之this">
                         
-                        <span class="card-title">Vue3学习笔记</span>
+                        <span class="card-title">Js之this</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -825,65 +834,8 @@ fn(); //function (){console.log(fn);};正确
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-31
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            北极星
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/vue3/">
-                        <span class="chip bg-color">vue3</span>
-                    </a>
-                    
-                    <a href="/tags/TypeScript/">
-                        <span class="chip bg-color">TypeScript</span>
-                    </a>
-                    
-                    <a href="/tags/Composition-Api/">
-                        <span class="chip bg-color">Composition Api</span>
-                    </a>
-                    
-                    <a href="/tags/vite/">
-                        <span class="chip bg-color">vite</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/06207209.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Js执行机制(Event Loop)">
-                        
-                        <span class="card-title">Js执行机制(Event Loop)</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-20
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -899,8 +851,57 @@ fn(); //function (){console.log(fn);};正确
                         <span class="chip bg-color">JavaScript</span>
                     </a>
                     
-                    <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">
-                        <span class="chip bg-color">事件循环机制</span>
+                    <a href="/tags/%E4%B8%8A%E4%B8%8B%E6%96%87/">
+                        <span class="chip bg-color">上下文</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/070115134.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="搬砖日记">
+                        
+                        <span class="card-title">搬砖日记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            北极星
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">经验总结</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8A%9F%E8%83%BD%E5%A4%8D%E7%9B%98/">
+                        <span class="chip bg-color">功能复盘</span>
                     </a>
                     
                 </div>
