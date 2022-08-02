@@ -6,7 +6,7 @@
   <link href="http://polariswrp.github.io/atom.xml" rel="self"/>
   
   <link href="http://polariswrp.github.io/"/>
-  <updated>2022-07-31T09:11:59.508Z</updated>
+  <updated>2022-08-02T15:05:11.544Z</updated>
   <id>http://polariswrp.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Js之作用域链</title>
+    <link href="http://polariswrp.github.io/2022/080261004.html"/>
+    <id>http://polariswrp.github.io/2022/080261004.html</id>
+    <published>2022-08-02T14:36:45.000Z</published>
+    <updated>2022-08-02T15:05:11.544Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、静态作用域&quot;&gt;&lt;a href=&quot;#一、静态作用域&quot; class=&quot;headerlink&quot; title=&quot;一、静态作用域&quot;&gt;&lt;/a&gt;一、静态作用域&lt;/h2&gt;&lt;h3 id=&quot;1-1-代码栗子&quot;&gt;&lt;a href=&quot;#1-1-代码栗子&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="JavaScript" scheme="http://polariswrp.github.io/tags/JavaScript/"/>
+    
+    <category term="作用域" scheme="http://polariswrp.github.io/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>Js闭包例子补充</title>
