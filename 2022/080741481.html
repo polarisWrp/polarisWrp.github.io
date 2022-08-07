@@ -643,7 +643,24 @@ window<span class="token punctuation">.</span><span class="token function">open<
 </code></pre>
 <h4 id="4-1-2-注意点以及优化项"><a href="#4-1-2-注意点以及优化项" class="headerlink" title="4.1.2 注意点以及优化项"></a>4.1.2 注意点以及优化项</h4><ul>
 <li>首先，这边定义 <code>auto-upload</code>属性设置为false，那么文件就不是自动上传的方式了，所以官方文档中的一些钩子函数例如<code>before-upload,on-success</code>等都会失效，这一点源码中也能看出，这些钩子都是在 <code>auto-upload=true</code>的情况下才会执行的逻辑；我们需要把原先的校验逻辑，上传前数据转换等待放在<code>on-change</code>函数当中。</li>
-<li>数据回显方面<code>el-upload</code>组件内部支持由{name: string, url: string}构成的对象数组，这一点需要状态层的人员注意，在定义数据结构时尽量定义成这种，否则的话ui组件双向绑定时需要做兼容处理；兼容方式为父组件传入一个对象结构<code>fileMap=&#123;name: fileName, url: filePath&#125;</code>,其中<code>fileName与filePath</code>为业务层给的双向绑定的字段;在数据回显的逻辑中给双向绑定的数组里面的每一项都加入<code>fileName与filePath</code>字段</li>
+<li>数据回显方面<code>el-upload</code>组件内部支持由{name: string, url: string}构成的对象数组，如果后端给的数据模型不是这种，那么ui组件双向绑定时需要做兼容处理；解决方式：比如后端给的是<code>&#123;fileName:string,filePath:string&#125;[]</code>,父组件传入一个对象结构<code>fileMap=&#123;name: fileName, url: filePath&#125;</code>,其中<code>fileName与filePath</code>为后端定义的数据结构;在数据回显的逻辑中给双向绑定的数组里面的每一项都加入<code>fileName与filePath</code>字段</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>ts<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+  <span class="token keyword">import</span> <span class="token punctuation">{</span> Vue<span class="token punctuation">,</span> Prop <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue-property-decorator'</span>
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">extends</span> Vue<span class="token punctuation">{</span>
+    @<span class="token function">Prop</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      type<span class="token punctuation">:</span> Object<span class="token punctuation">,</span>
+      <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> string<span class="token punctuation">;</span> url<span class="token punctuation">:</span> string<span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    fileMap<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      name<span class="token punctuation">:</span> fileName<span class="token punctuation">,</span> 
+      url<span class="token punctuation">:</span> filePath
+    <span class="token punctuation">}</span>
+
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
+<ul>
 <li>其次，预览时默认给的<code>el-dialog</code>内部嵌套<code>img</code>标签展示图片的方式，这种方式在上传图片过大过小时展示会出现一些布局上的问题，比如不能居中或者说需要依靠滚动栏才能看清整个图片，用户体验比较差。针对这个，我们可以换成<code>el-image</code>大图预览，这种方式可以展示出整张图片，自带的功能中可以支持放大、缩小并且在上传多张图片时能够支持上下切换。</li>
 <li>但是使用<code>el-iamge</code>多图预览中，我们需要考虑预览图片的数组，因为这个数组时静态的数据源，每次点击时只会展示数组第一项，解决方式就是在点击预览按钮时，将选中的当前项从预览数组中置顶；当然，如果需求是只支持单个图片的情况就不需要考虑了。</li>
 <li>图片上传过程中，有可能因为图片过大上传比较慢的原因，导致图片还处于上传阶段但是用户点击了预览按钮，这样就会导致图片展示失败，让人误以为是文件上传失败其实是文件还处于上传当中；解决方式就是在 <code>&lt;div slot=file&gt;</code>标签图展示图片的<code>&lt;el-image&gt;</code>加上加载状态<code>v-loading</code>,保证上传成功才开放预览删除等功能</li>
