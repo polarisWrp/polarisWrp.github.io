@@ -6,7 +6,7 @@
   <link href="http://polariswrp.github.io/atom.xml" rel="self"/>
   
   <link href="http://polariswrp.github.io/"/>
-  <updated>2022-08-07T12:47:13.351Z</updated>
+  <updated>2022-08-08T04:38:43.535Z</updated>
   <id>http://polariswrp.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浏览器缓存</title>
+    <link href="http://polariswrp.github.io/2022/080831189.html"/>
+    <id>http://polariswrp.github.io/2022/080831189.html</id>
+    <published>2022-08-08T04:37:52.000Z</published>
+    <updated>2022-08-08T04:38:43.535Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;浏览器缓存&quot;&gt;&lt;a href=&quot;#浏览器缓存&quot; class=&quot;headerlink&quot; title=&quot;浏览器缓存&quot;&gt;&lt;/a&gt;浏览器缓存&lt;/h2&gt;&lt;h3 id=&quot;1-定义&quot;&gt;&lt;a href=&quot;#1-定义&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Cache" scheme="http://polariswrp.github.io/tags/Cache/"/>
+    
+  </entry>
   
   <entry>
     <title>总结使用el-upload上传各种静态文件</title>
